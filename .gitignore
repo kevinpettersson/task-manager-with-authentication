@@ -18,7 +18,11 @@ target/
 /**/target/
 
 # Ignore wrapper downloads
-.mvn/wrapper/apache-maven-*.zip
+.mvn
+mvnw.cmd
+mvnw
+HELP.md
+
 
 # Ignore local IDE files
 /.idea/
