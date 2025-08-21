@@ -1,18 +1,16 @@
-package com.kevinpe.task_service;
+package com.kevinpe.task_service.controller;
 
-import org.springframework.http.ResponseEntity;
-import org.springframework.http.server.DelegatingServerHttpResponse;
+import com.kevinpe.task_service.model.Task;
+import com.kevinpe.task_service.repository.TaskRepository;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
 
-@RequestMapping("/tasks")
 @RestController
-public class TaskServiceController {
+public class TaskController {
 
     private final TaskRepository taskRepository;
 
-    public TaskServiceController(TaskRepository taskRepository) {
+    public TaskController(TaskRepository taskRepository) {
         this.taskRepository = taskRepository;
     }
 
@@ -24,5 +22,10 @@ public class TaskServiceController {
     @PostMapping("/create")
     public Task create(@RequestBody Task task) {
         return taskRepository.save(task);
+    }
+
+    @DeleteMapping("/delete")
+    public void delete(@RequestParam Integer id) {
+        taskRepository.deleteById(id);
     }
 }

@@ -1,10 +1,10 @@
-package com.kevinpe.task_service;
+package com.kevinpe.auth_service;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class TaskServiceApplicationTests {
+class AuthApplicationTests {
 
 	@Test
 	void contextLoads() {

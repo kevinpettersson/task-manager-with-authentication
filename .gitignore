@@ -13,6 +13,18 @@ target/
 .springBeans
 .sts4-cache
 
+# Ignore Maven target directories
+/target/
+/**/target/
+
+# Ignore wrapper downloads
+.mvn/wrapper/apache-maven-*.zip
+
+# Ignore local IDE files
+/.idea/
+/*.log
+
+
 ### IntelliJ IDEA ###
 .idea
 *.iws
