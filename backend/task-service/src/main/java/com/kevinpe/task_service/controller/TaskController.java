@@ -1,31 +1,31 @@
 package com.kevinpe.task_service.controller;
 
 import com.kevinpe.task_service.model.Task;
-import com.kevinpe.task_service.repository.TaskRepository;
+import com.kevinpe.task_service.service.TaskService;
+
+import jakarta.servlet.http.HttpSession;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
 @RestController
 public class TaskController {
 
-    private final TaskRepository taskRepository;
+    private final TaskService taskService;
 
-    public TaskController(TaskRepository taskRepository) {
-        this.taskRepository = taskRepository;
-    }
-
-    @GetMapping("/helloworld")
-    public String helloWorld() {
-        return "Hello World!";
+    public TaskController(TaskService taskService) {
+        this.taskService = taskService;
     }
 
     @PostMapping("/create")
-    public Task create(@RequestBody Task task) {
-        return taskRepository.save(task);
+    public ResponseEntity<Task> create(@RequestBody Task task, HttpSession session) {
+        Task savedTask = this.taskService.create(task);
+        return ResponseEntity.ok(savedTask);
     }
 
     @DeleteMapping("/delete")
-    public void delete(@RequestParam Integer id) {
-        taskRepository.deleteById(id);
+    public ResponseEntity<String> delete(@RequestParam Integer id,  HttpSession session) {
+        this.taskService.delete(id);
+        return ResponseEntity.ok("Task deleted");
     }
 }

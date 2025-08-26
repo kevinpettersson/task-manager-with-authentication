@@ -1,0 +1,3 @@
+mvn -pl backend/auth-service spring-boot:run
+
+mvn -pl backend/task-service spring-boot:run

@@ -15,12 +15,13 @@ public class Task {
     private String name;
     private String description;
 
+    // the no-argument constructor required by JPA
+    public Task(){}
+
     public Task(String name, String description) {
         this.name = name;
         this.description = description;
     }
-
-    public Task(){} // the no-argument constructor required by JPA
 
     public Integer getId() {
         return id;
