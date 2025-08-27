@@ -19,10 +19,12 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(csrf -> csrf.disable())
+                .csrf(csrf -> csrf.disable()) // keep session based auth disabled since not using cookies.
                 .authorizeHttpRequests(auth -> auth
-                        .anyRequest().permitAll()
+                        .requestMatchers("/register", "/login").permitAll()
+                        .anyRequest().authenticated()
                 )
+                // keep basic auth disabled since using JWT based auth.
                 .httpBasic(httpBasicAuth -> httpBasicAuth.disable());
         return http.build();
     }

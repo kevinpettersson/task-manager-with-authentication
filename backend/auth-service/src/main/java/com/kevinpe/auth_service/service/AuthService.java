@@ -10,23 +10,24 @@ public class AuthService {
 
     private final AuthRepository authRepository;
     private final PasswordEncoder passwordEncoder;
+    private final JWTService jwtService;
 
-    public AuthService(AuthRepository authRepository, PasswordEncoder passwordEncoder) {
+    public AuthService(AuthRepository authRepository, PasswordEncoder passwordEncoder, JWTService jwtService) {
         this.authRepository = authRepository;
         this.passwordEncoder = passwordEncoder;
+        this.jwtService = jwtService;
     }
 
     public Account register(Account account) {
         if (authRepository.findByUsername(account.getUsername()).isPresent()) {
             throw new RuntimeException("Username already exists.");
         }
-
         account.setPassword(this.passwordEncoder.encode(account.getPassword()));
 
         return authRepository.save(account);
     }
 
-    public void login(Account account) {
+    public String login(Account account) {
         if (authRepository.findByUsername(account.getUsername()).isPresent()){
             Account user = authRepository.findByUsername(account.getUsername()).get();
 
@@ -36,5 +37,7 @@ public class AuthService {
         } else {
             throw new RuntimeException("Invalid username or password.");
         }
+        // account authenicated, return JWT token
+        return this.jwtService.generateToken(account.getUsername());
     }
 }
