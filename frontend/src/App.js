@@ -1,12 +1,13 @@
-import './App.css';
-import LoginPage from './pages/LoginPage'
+import { ChakraProvider} from "@chakra-ui/react";
+import LoginPage from "./components/LoginPage.js"
 
 function App() {
-  return (
-    <div className="App">
-      <LoginPage/>
-    </div>
-  );
+    return (
+        <ChakraProvider>
+            <LoginPage></LoginPage>
+        </ChakraProvider>
+    );
 }
 
 export default App;
+
