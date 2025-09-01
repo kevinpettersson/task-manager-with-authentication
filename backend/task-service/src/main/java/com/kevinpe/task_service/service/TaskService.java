@@ -4,6 +4,8 @@ import com.kevinpe.task_service.model.Task;
 import com.kevinpe.task_service.repository.TaskRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class TaskService {
 
@@ -24,5 +26,9 @@ public class TaskService {
         }else{
             throw new RuntimeException("task not found");
         }
+    }
+
+    public List<Task> getTasks(){
+        return this.taskRepository.findAll();
     }
 }

@@ -2,6 +2,7 @@ package com.kevinpe.task_service.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
@@ -20,6 +21,7 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable()) // keep session based auth disabled since not using cookies.
                 .authorizeHttpRequests(auth -> auth
+                        .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                         .anyRequest().authenticated() // all requests in task-service should be validated against the JWT from auth-service.
                 )
                 // keep basic auth disabled since using JWT based auth.
