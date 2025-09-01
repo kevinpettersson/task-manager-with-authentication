@@ -14,7 +14,6 @@ function LoginPage() {
             const token = response.token.trim();
             localStorage.setItem("token", token);
             navigate("/tasks");
-            console.log("ok logggggg");
         }
         catch (e){
             alert("Login failed: " + e.message)

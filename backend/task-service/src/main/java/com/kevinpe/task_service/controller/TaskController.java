@@ -3,11 +3,11 @@ package com.kevinpe.task_service.controller;
 import com.kevinpe.task_service.model.Task;
 import com.kevinpe.task_service.service.TaskService;
 
-import jakarta.servlet.http.HttpSession;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @CrossOrigin(origins = "http://localhost:3000") // allow React dev server
 @RestController
@@ -20,12 +20,11 @@ public class TaskController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<Task> create(@RequestBody Task task, HttpSession session) {
+    public ResponseEntity<Task> create(@RequestBody Task task) {
         Task savedTask = this.taskService.create(task);
         return ResponseEntity.ok(savedTask);
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/tasks")
     public ResponseEntity<List<Task>> getAllTasks() {
         List<Task> list = this.taskService.getTasks();
@@ -33,8 +32,8 @@ public class TaskController {
     }
 
     @DeleteMapping("/delete")
-    public ResponseEntity<String> delete(@RequestParam Integer id,  HttpSession session) {
+    public ResponseEntity<Map<String, String>> delete(@RequestParam Integer id) {
         this.taskService.delete(id);
-        return ResponseEntity.ok("Task deleted");
+        return ResponseEntity.ok(Map.of("message", "Task deleted"));
     }
 }
