@@ -1,0 +1,22 @@
+# Maven local repository (don’t include your ~/.m2 folder)
+.mvn/
+.m2/
+target/
+*.log
+*.tmp
+*.bak
+
+# IDE and OS files
+.idea/
+*.iml
+*.class
+*.DS_Store
+*.swp
+*.swo
+
+# Git files
+.git/
+.gitignore
+
+# Any local configs
+.env

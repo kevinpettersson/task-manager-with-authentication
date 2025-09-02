@@ -1,0 +1,19 @@
+
+services:
+  auth-service:
+    build: ./backend/auth-service/Dockerfile
+    ports:
+      - 8081:8081
+  db:
+    image: postgres:17
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Utak7412
+      POSTGRES_DB: authdb
+    ports:
+      - 5432:5432
+    volumes:
+      - db-data:
+
+volumes:
+  db-data:
