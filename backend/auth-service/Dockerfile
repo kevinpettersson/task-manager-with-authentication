@@ -12,7 +12,7 @@ WORKDIR /app
 COPY pom.xml ./                 
 
 # Copy all modules
-COPY ./backend ./backend
+COPY backend backend
 
 # Download dependencies for all modules, used cached dependencies if pom is unchanged (offline).
 # Use batch mode '-B' to skip interactive prompts during docker build phase.
