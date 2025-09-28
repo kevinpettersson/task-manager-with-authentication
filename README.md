@@ -1,4 +1,4 @@
-# devops-microservices-project
+# Task Manager with Authentication
 
 ## Project Overview
 This project is a microservices-based application consisting of two Spring Boot services and a React frontend:
@@ -61,7 +61,7 @@ docker compose version
 ### Step 2 - Clone the repository
 Clone the repository into a folder of your choice:
 ```bash
-git clone https://github.com/kevinpettersson/devops-microservices-project.git
+git clone https://github.com/kevinpettersson/task-manager-with-authentication.git
 ```
 
 ---
@@ -69,7 +69,7 @@ git clone https://github.com/kevinpettersson/devops-microservices-project.git
 ### Step 3 - Build and start the Docker container
 Navigate to the project directory:
 ```bash
-cd /path/to/devops-microservices-project
+cd /path/to/task-manager-with-authentication
 ```
 Then run Docker Compose:
 ```bash
