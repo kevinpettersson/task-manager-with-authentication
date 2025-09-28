@@ -17,15 +17,8 @@ public class JWTService {
 
     private String secretKey = "";
 
-    public JWTService(@Value("${jwt.secret}") String secretKey) {
+    public JWTService(@Value("${JWT_SECRET}") String secretKey) {
         this.secretKey = secretKey;
-//        try {
-//            KeyGenerator keyGen = KeyGenerator.getInstance("HmacSHA256");
-//            SecretKey sk = keyGen.generateKey();
-//            this.secretKey = Base64.getEncoder().encodeToString(sk.getEncoded());
-//        } catch (NoSuchAlgorithmException e) {
-//            throw new RuntimeException(e);
-//        }
     }
 
     public String generateToken(String username) {

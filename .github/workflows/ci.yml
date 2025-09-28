@@ -22,6 +22,15 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    env: 
+      POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+      POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+      AUTH_DB_USERNAME: ${{ secrets.AUTH_DB_USERNAME }}
+      AUTH_DB_PASSWORD: ${{ secrets.AUTH_DB_PASSWORD }}
+      TASK_DB_USERNAME: ${{ secrets.TASK_DB_USERNAME }}
+      TASK_DB_PASSWORD: ${{ secrets.TASK_DB_PASSWORD }}
+      JWT_SECRET: ${{ secrets.JWT_SECRET }}
+
     steps:
     - uses: actions/checkout@v4
     - name: Set up JDK 17
@@ -32,3 +41,14 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: mvn -B package --file pom.xml
+
+      name: Run Docker Compose
+      run: docker compose up -d 
+      env: 
+        POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+        POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+        AUTH_DB_USERNAME: ${{ secrets.AUTH_DB_USERNAME }}
+        AUTH_DB_PASSWORD: ${{ secrets.AUTH_DB_PASSWORD }}
+        TASK_DB_USERNAME: ${{ secrets.TASK_DB_USERNAME }}
+        TASK_DB_PASSWORD: ${{ secrets.TASK_DB_PASSWORD }}
+        JWT_SECRET: ${{ secrets.JWT_SECRET }}

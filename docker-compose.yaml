@@ -9,8 +9,9 @@ services:
       - "8081:8081" # Expose auth-service on port 5432
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/authdb
-      SPRING_DATASOURCE_USERNAME: postgres
-      SPRING_DATASOURCE_PASSWORD: postgres
+      SPRING_DATASOURCE_USERNAME: ${AUTH_DB_USERNAME}
+      SPRING_DATASOURCE_PASSWORD: ${AUTH_DB_PASSWORD}
+      JWT_SECRET: ${JWT_SECRET}
     depends_on:
       - db
 
@@ -22,8 +23,9 @@ services:
      - "8082:8082" # Expose task-service on port 8082
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/taskdb
-      SPRING_DATASOURCE_USERNAME: postgres
-      SPRING_DATASOURCE_PASSWORD: postgres
+      SPRING_DATASOURCE_USERNAME: ${TASK_DB_USERNAME}
+      SPRING_DATASOURCE_PASSWORD: ${TASK_DB_PASSWORD}
+      JWT_SECRET: ${JWT_SECRET}
     depends_on:
       - db
 
@@ -37,8 +39,8 @@ services:
   db:
     image: postgres:17
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: postgres
     ports: 
       - "5432:5432" # Expose PostgreSQL on port 5432
